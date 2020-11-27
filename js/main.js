@@ -76,7 +76,7 @@ const teams = [
 var selectElement = document.querySelector("select");
 
 function setTeams() {
-  selectElement.innerHTML = '';
+  // selectElement.innerHTML = '';
 
   for (const team of teams) {
     var optionElement = document.createElement('option');
@@ -118,6 +118,17 @@ var db = firebase.firestore();
 var storage = firebase.storage();
 
 var storageRef = storage.ref();
+
+function reset() {
+  document.querySelector("#name").value = "",
+  document.querySelector("#lastName").value = "",
+  document.querySelector("#birthDate").value = "",
+  document.querySelector("#height").value = "",
+  document.querySelector("#foot").value = "null",
+  document.querySelector("#position").value = "null",
+  document.querySelector("#dream").value = ""
+  document.querySelector("#photo").value = ""
+}
 
 function addPlayer() {
   let player = {
@@ -164,7 +175,7 @@ function addPlayer() {
       db.collection("players").add(player)
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
-        document.getElementById("form").reset();
+        reset();
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
