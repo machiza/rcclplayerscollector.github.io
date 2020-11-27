@@ -138,7 +138,7 @@ function addPlayer() {
   const photoExtension = splitPhotoName[splitPhotoName.length - 1];
   const photoName = player.name+''+player.lastName+'.'+photoExtension;
 
-  var uploadTask = storageRef.child(`players/${team}/${photoName}`);
+  var uploadTask = storageRef.child(`players/${team}/${photoName}`).put(file);
   
   uploadTask.on('state_changed', function(snapshot){
     // Observe state change events such as progress, pause, and resume
