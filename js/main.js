@@ -160,14 +160,15 @@ function addPlayer() {
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
       player.photo = downloadURL;
+      console.log('File available at', downloadURL);
       db.collection("players").add(player)
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+        document.getElementById("form").reset();
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
-      console.log('File available at', downloadURL);
     });
   });
 }

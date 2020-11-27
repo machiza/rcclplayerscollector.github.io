@@ -27,10 +27,20 @@
           <option value="direito">Direito</option>
           <option value="esquerdo">Esquerdo</option>
         </select>
-        <input id="position" class="form-control form-control-sm" type="text" placeholder="Posição">
+        <!-- <input id="position" class="form-control form-control-sm" type="text" placeholder="Posição"> -->
+        <select id="position" class="form-control form-control-sm">
+          <option>Selecione a Posição</option>
+          <option value="Goalkeeper">Guardaredes</option>
+          <option value="Defender">Defesa</option>
+          <option value="Midfielder">Médio</option>
+          <option value="Forward">Avançado</option>
+        </select>
         <input id="dream" class="form-control form-control-sm" type="text" placeholder="Sonho">
         <input id="photo" id="myFileInput" type="file" accept="image/*;capture=camera">
-        <button class="btn btn-primary" type="button" onclick="addPlayer()">Submit form</button>
+        <br />
+        <div class="button">
+          <button class="btn btn-primary" type="button" onclick="addPlayer()">Submit form</button>
+        </div>
       </div>
     </form>
   </div>

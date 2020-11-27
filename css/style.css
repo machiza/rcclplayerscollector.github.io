@@ -11,6 +11,10 @@ html,body {
   display:flex;
   height:100%;
   width:100%;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 /* .form {
@@ -24,5 +28,11 @@ html,body {
 
 form {
   margin:auto;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
