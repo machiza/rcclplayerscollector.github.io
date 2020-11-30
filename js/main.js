@@ -15,6 +15,11 @@ const teams = [
     shortName: "Baptine FC"
   },
   {
+    "name": "Botafogo",
+    "fullName": "Botafogo Futebol Clube",
+    shortName: "Botafogo F.C."
+  },
+  {
     "name": "Chelsea",
     "fullName": "Chelsea Futebol Clube",
     shortName: "Chelsea FC"
@@ -68,6 +73,11 @@ const teams = [
     "name": "Babalaza1",
     "fullName": "Babalaza Futebol Clube",
     shortName: "Babalaza FC"
+  },
+  {
+    "name": "Zitha",
+    "fullName": "Zitha Futebol Clube",
+    shortName: "Zitha FC"
   }
 ]
 
