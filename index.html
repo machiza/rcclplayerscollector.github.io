@@ -1,60 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <title>RCCL 2020/21</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/teams.json"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
-</head>
-<body>
-  <div class="container">
-    <form>
-      <div id="form" class="form">
-        <select id="team" class="form-control form-control-sm">
-          <option value="null">Selecione Equipa</option>
-        </select>
-        <input id="name" class="form-control form-control-sm" type="text" placeholder="Nome">
-        <input id="lastName" class="form-control form-control-sm" type="text" placeholder="Apelido">
-        <label>Data de Nascimento</label>
-        <input id="birthDate" class="form-control form-control-sm" type="date" placeholder="Data de nascimento">
-        <input id="birthplace" class="form-control form-control-sm" type="text" placeholder="Local de nascimento">
-        <input id="residence" class="form-control form-control-sm" type="text" placeholder="Residência">
-        <input id="educationLevel" class="form-control form-control-sm" type="text" placeholder="Nível de escolaridade">
-        <input id="profession" class="form-control form-control-sm" type="text" placeholder="Profissão">
-        <input id="height" class="form-control form-control-sm" type="text" placeholder="Altura">
-        <select id="foot" class="form-control form-control-sm">
-          <option value="null">Selecione o Pé</option>
-          <option value="direito">Direito</option>
-          <option value="esquerdo">Esquerdo</option>
-        </select>
-        <!-- <input id="position" class="form-control form-control-sm" type="text" placeholder="Posição"> -->
-        <select id="position" class="form-control form-control-sm">
-          <option value="null">Selecione a Posição</option>
-          <option value="Goalkeeper">Guardaredes</option>
-          <option value="Defender">Defesa</option>
-          <option value="Midfielder">Médio</option>
-          <option value="Forward">Avançado</option>
-        </select>
-        <input id="dream" class="form-control form-control-sm" type="text" placeholder="Sonho">
-        <input id="photo" id="myFileInput" type="file" accept="image/*;capture=camera">
-        <br />
-        <div class="button">
-          <button class="btn btn-primary" type="button" onclick="addPlayer()">Submit form</button>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Transparent Login Form UI</title> -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $( "#birthDate" ).datepicker();
+        $("#birthDate").each(function() {
+          $(this).prop("placeholder", "Data de Nascimento");
+        });
+      });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="content">
+        <header>RCCL FORM</header>
+        <div class="progress-bar">
+          <div class="step">
+            <p style="visibility: hidden;">Name</p>
+            <div class="bullet">
+              <span>1</span>
+            </div>
+            <div class="check fas fa-check"></div>
+          </div>
+          <div class="step">
+            <p style="visibility: hidden;">Contact</p>
+              <div class="bullet">
+                <span>2</span>
+              </div>
+              <div class="check fas fa-check"></div>
+          </div>
+          <div class="step">
+            <p style="visibility: hidden;">Birth</p>
+            <div class="bullet">
+              <span>3</span>
+            </div>
+            <div class="check fas fa-check"></div>
+          </div>
+          <div class="step">
+            <p style="visibility: hidden;">Submit</p>
+            <div class="bullet">
+              <span>4</span>
+            </div>
+            <div class="check fas fa-check"></div>
+          </div>
+        </div>
+        <div class="form-outer">
+          <form action="#">
+            <div class="page slide-page">
+              <div class="field">
+                <span class="fas fa-shield-alt"></span>
+                <select id="team" class="form-control form-control-sm">
+                  <option value="null">Selecione Equipa</option>
+                </select>
+              </div>
+              <div class="field space">
+                <span class="fa fa-user"></span>
+                <input type="text" id="name" placeholder="Nome">
+              </div>
+              <div class="field space">
+                <span class="fa fa-user"></span>
+                <input id="lastName" type="text" placeholder="Apelido">
+              </div>
+              <div class="field space">
+                <span class="fa fa-phone-alt"></span>
+                <input id="telephone" type="text" placeholder="Telefone">
+              </div>
+              <div class="field btns space">
+                <button type="button" class="firstNext next">Next</button>
+              </div>
+            </div>
+            <div class="page">
+              <div class="field space">
+                <span class="fas fa-calendar-alt"></span>
+                <input type="text" id="birthDate">
+              </div>
+              <div class="field space">
+                <span class="fa fa-map-marker-alt"></span>
+                <input id="birthplace" type="text" placeholder="Local de Nascimento">
+              </div>
+              <div class="field space">
+                <span class="fa fa-map-pin"></span>
+                <input id="residence" type="text" placeholder="Residência">
+              </div>
+              <div class="field btns space">
+                <button type="button" class="prev-1 prev">Previous</button>
+                <button type="button" class="next-1 next">Next</button>
+              </div>
+            </div>
+            <div class="page">
+              <div class="field space">
+                <span class="fa fa-user-graduate"></span>
+                <input id="educationLevel" type="text" placeholder="Nível de Escolaridade">
+              </div>
+              <div class="field space">
+                <span class="fa fa-tools"></span>
+                <input id="profession" type="text" placeholder="Profissão">
+              </div>
+              <div class="field space">
+                <span class="fa fa-ruler-combined"></span>
+                <input id="height" type="text" placeholder="Altura">
+              </div>
+              <div class="field btns space">
+                <button type="button" class="prev-2 prev">Previous</button>
+                <button type="button" class="next-2 next">Next</button>
+              </div>
+            </div>
+            <div class="page">
+              <div class="field space">
+                <span class="fa fa-shoe-prints"></span>
+                <select id="foot">
+                  <option value="null">Selecione o Pé</option>
+                  <option value="direito">Direito</option>
+                  <option value="esquerdo">Esquerdo</option>
+                </select>
+              </div>
+              <div class="field space">
+                <span class="fa fa-crosshairs"></span>
+                <select id="position">
+                  <option value="null">Selecione a Posição</option>
+                  <option value="Goalkeeper">Guardaredes</option>
+                  <option value="Defender">Defesa</option>
+                  <option value="Midfielder">Médio</option>
+                  <option value="Forward">Avançado</option>
+                </select>
+              </div>
+              <div class="field space">
+                <span class="fa fa-user-tie"></span>
+                <input id="dream" type="text" placeholder="Sonho">
+              </div>
+              <div class="field space">
+                <span class="fa fa-camera"></span>
+                <input id="photo" type="file" accept="image/*;capture=camera" class="upload-box" data-buttonText="Your label here.">
+              </div>
+              <div class="field btns space">
+                <button type="button" class="prev-3 prev">Previous</button>
+                <button class="submit">Submit</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
-  </div>
-  
-
-  <script type="text/javascript" src="js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
-  <script src="/__/firebase/init.js"></script>
-</body>
+    </div>
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="js/main.js"></script> -->
+    <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <!-- <script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "HIDE";
+         showBtn.style.color = "#3498db";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "SHOW";
+         showBtn.style.color = "#222";
+       }
+      });
+    </script> -->
+  </body>
 </html>
